@@ -29,7 +29,7 @@ class Showcase extends StatefulWidget {
   final VoidCallback onTargetClick;
   final bool disposeOnTap;
   final bool disableAnimation;
-  final where where;
+  final String where;
 
   const Showcase({
     @required this.key,
