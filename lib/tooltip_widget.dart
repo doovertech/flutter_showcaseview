@@ -224,7 +224,7 @@ class _ToolTipWidgetState extends State<ToolTipWidget> {
                                           )
                                         : Container(),
                                     Text(
-                                      widget.description,
+                                      widget.title,
                                       style: widget.descTextStyle ??
                                           Theme.of(context)
                                               .textTheme
