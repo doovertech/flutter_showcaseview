@@ -106,14 +106,16 @@ class _MailPageState extends State<MailPage> {
                             showcaseBackgroundColor: Colors.blueAccent,
                             textColor: Colors.white,
                             shapeBorder: CircleBorder(),
-                            child: Container(
-                              width: 30,
-                              height: 30,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                  fit: BoxFit.fill,
-                                  image: AssetImage('assets/simform.png'),
+                            child: Expanded(
+                              child: Container(
+                                width: MediaQuery.of(context).size.width - 100,
+                                height: MediaQuery.of(context).size.width,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                    fit: BoxFit.fill,
+                                    image: AssetImage('assets/simform.png'),
+                                  ),
                                 ),
                               ),
                             ),
