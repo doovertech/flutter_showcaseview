@@ -30,6 +30,7 @@ class Showcase extends StatefulWidget {
   final bool disposeOnTap;
   final bool disableAnimation;
   final String where;
+  final double focusRadius;
 
   const Showcase({
     @required this.key,
@@ -50,7 +51,7 @@ class Showcase extends StatefulWidget {
     this.disableAnimation = false,
     this.contentPadding = const EdgeInsets.symmetric(vertical: 8),
     this.onToolTipClick,
-    this.where,
+    this.where, this.focusRadius,
   })  : height = null,
         width = null,
         container = null,
@@ -99,7 +100,7 @@ class Showcase extends StatefulWidget {
       this.disposeOnTap,
       this.animationDuration = const Duration(milliseconds: 2000),
       this.disableAnimation = false,
-      this.contentPadding = const EdgeInsets.symmetric(vertical: 8), this.where})
+      this.contentPadding = const EdgeInsets.symmetric(vertical: 8), this.where, this.focusRadius})
       : this.showArrow = false,
         this.onToolTipClick = null,
         assert(overlayOpacity >= 0.0 && overlayOpacity <= 1.0,
@@ -251,8 +252,15 @@ class _ShowcaseState extends State<Showcase> with TickerProviderStateMixin {
                   painter: ShapePainter(
                       opacity: widget.overlayOpacity,
                       rect: position.getRect(),
-                      shapeBorder: widget.shapeBorder,
-                      color: widget.overlayColor),
+                      radius: widget.focusRadius,
+                      shapeBorder: widget.shapeBorder ??
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(widget.focusRadius ?? 8),
+                        ),
+                      ),
+                      color: widget.overlayColor
+                  ),
                 ),
               ),
             ),
@@ -261,6 +269,7 @@ class _ShowcaseState extends State<Showcase> with TickerProviderStateMixin {
               size: size,
               onTap: _getOnTargetTap,
               shapeBorder: widget.shapeBorder,
+              focusRadius: widget.focusRadius,
             ),
             ToolTipWidget(
               position: position,
@@ -292,6 +301,7 @@ class _TargetWidget extends StatelessWidget {
   final Animation<double> widthAnimation;
   final VoidCallback onTap;
   final ShapeBorder shapeBorder;
+  final double focusRadius;
 
   _TargetWidget({
     Key key,
@@ -300,10 +310,12 @@ class _TargetWidget extends StatelessWidget {
     this.widthAnimation,
     this.onTap,
     this.shapeBorder,
+    this.focusRadius,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    print(focusRadius);
     return Positioned(
       top: offset.dy,
       left: offset.dx,
@@ -317,8 +329,8 @@ class _TargetWidget extends StatelessWidget {
             decoration: ShapeDecoration(
               shape: shapeBorder ??
                   RoundedRectangleBorder(
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(8),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(focusRadius ?? 8),
                     ),
                   ),
             ),

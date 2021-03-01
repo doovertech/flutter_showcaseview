@@ -83,6 +83,7 @@ class _MailPageState extends State<MailPage> {
                                     Icons.menu,
                                     color: Colors.black45,
                                   ),
+                                  focusRadius: 0,
                                 ),
                                 SizedBox(
                                   width: 10,
