@@ -265,7 +265,7 @@ class _ShowcaseState extends State<Showcase> with TickerProviderStateMixin {
               offset: offset,
               screenSize: screenSize,
               title: widget.title,
-              description: widget.title,
+              description: widget.description,
               animationOffset: _slideAnimation,
               titleTextStyle: widget.titleTextStyle,
               descTextStyle: widget.descTextStyle,
