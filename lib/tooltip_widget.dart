@@ -48,6 +48,7 @@ class ToolTipWidget extends StatefulWidget {
   static bool isArrowUp;
   final VoidCallback onTooltipTap;
   final EdgeInsets contentPadding;
+  final String where;
 
   ToolTipWidget(
       {this.position,
@@ -65,7 +66,8 @@ class ToolTipWidget extends StatefulWidget {
       this.contentHeight,
       this.contentWidth,
       this.onTooltipTap,
-      this.contentPadding});
+      this.contentPadding,
+      this.where});
 
   @override
   _ToolTipWidgetState createState() => _ToolTipWidgetState();
@@ -73,22 +75,6 @@ class ToolTipWidget extends StatefulWidget {
 
 class _ToolTipWidgetState extends State<ToolTipWidget> {
   Offset position;
-
-  bool isCloseToTopOrBottom(Offset position) {
-    double height = 130;
-    height = widget.contentHeight ?? height;
-    print('${position.dy} ${widget.title ?? widget.description}');
-    return (widget.screenSize.height - (position.dy - (widget.contentHeight ?? 0)) + 16) <= height;
-    // if(widget.screenSize.height - position.dy)
-  }
-
-  String findPositionForContent(Offset position) {
-    if (isCloseToTopOrBottom(position)) {
-      return 'ABOVE';
-    } else {
-      return 'BELOW';
-    }
-  }
 
   double _getTooltipWidth() {
     double titleLength = widget.title == null ? 0 : widget.title.length * 10.0;
@@ -162,7 +148,7 @@ class _ToolTipWidgetState extends State<ToolTipWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final contentOrientation = findPositionForContent(position);
+    final contentOrientation = widget.where;
     final contentOffsetMultiplier = contentOrientation == "BELOW" ? 1.0 : -1.0;
     ToolTipWidget.isArrowUp = contentOffsetMultiplier == 1.0;
 
@@ -219,7 +205,7 @@ class _ToolTipWidgetState extends State<ToolTipWidget> {
                                   children: <Widget>[
                                     widget.title != null
                                         ? Text(
-                                            'widget.title',
+                                            widget.title,
                                             style: widget.titleTextStyle ??
                                                 Theme.of(context)
                                                     .textTheme
@@ -230,7 +216,7 @@ class _ToolTipWidgetState extends State<ToolTipWidget> {
                                           )
                                         : Container(),
                                     Text(
-                                      'widget.description',
+                                      widget.description,
                                       style: widget.descTextStyle ??
                                           Theme.of(context)
                                               .textTheme
