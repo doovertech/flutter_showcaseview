@@ -315,7 +315,6 @@ class _TargetWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(focusRadius);
     return Positioned(
       top: offset.dy,
       left: offset.dx,

@@ -157,7 +157,6 @@ class _ToolTipWidgetState extends State<ToolTipWidget> {
         : widget.position.getTop() + (contentOffsetMultiplier * 3);
 
     final contentFractionalOffset = contentOffsetMultiplier.clamp(-1.0, 0.0);
-    print('$contentFractionalOffset ${widget.description ?? widget.title}');
 
     double paddingTop = ToolTipWidget.isArrowUp ? 22 : 0;
     double paddingBottom = ToolTipWidget.isArrowUp ? 0 : 27;
