@@ -148,7 +148,7 @@ class _ToolTipWidgetState extends State<ToolTipWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final contentOrientation = widget.where ?? 'ABOVE';
+    final contentOrientation = widget.where ?? 'BELOW';
     final contentOffsetMultiplier = contentOrientation == "BELOW" ? 1.0 : -1.0;
     ToolTipWidget.isArrowUp = contentOffsetMultiplier == 1.0;
 
