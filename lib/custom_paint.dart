@@ -48,7 +48,7 @@ class ShapePainter extends CustomPainter {
     RRect outer =
         RRect.fromLTRBR(0, 0, size.width, size.height, Radius.circular(0));
 
-    double radiusCustom = shapeBorder == CircleBorder() ? 50 : radius;
+    double radiusCustom = shapeBorder == CircleBorder() ? 50 : (radius ?? 6);
 
     RRect inner = RRect.fromRectAndRadius(rect, Radius.circular(radiusCustom));
     canvas.drawDRRect(outer, inner, paint);
