@@ -75,13 +75,19 @@ class _ToolTipWidgetState extends State<ToolTipWidget> {
   Offset position;
 
   bool isCloseToTopOrBottom(Offset position) {
-    double height = 120;
+    double height = 150;
     height = widget.contentHeight ?? height;
-    return (widget.screenSize.height - position.dy) <= height;
+    print('${position.dy} ${widget.title ?? widget.description}');
+    return (widget.screenSize.height - (position.dy + (widget.contentHeight ?? 0))) <= height;
+    // if(widget.screenSize.height - position.dy)
   }
 
   String findPositionForContent(Offset position) {
-    return "BELOW";
+    if (isCloseToTopOrBottom(position)) {
+      return 'ABOVE';
+    } else {
+      return 'BELOW';
+    }
   }
 
   double _getTooltipWidth() {
@@ -213,7 +219,7 @@ class _ToolTipWidgetState extends State<ToolTipWidget> {
                                   children: <Widget>[
                                     widget.title != null
                                         ? Text(
-                                            'widget.title',
+                                            widget.title,
                                             style: widget.titleTextStyle ??
                                                 Theme.of(context)
                                                     .textTheme
@@ -224,7 +230,7 @@ class _ToolTipWidgetState extends State<ToolTipWidget> {
                                           )
                                         : Container(),
                                     Text(
-                                      'widget.title',
+                                      widget.description,
                                       style: widget.descTextStyle ??
                                           Theme.of(context)
                                               .textTheme
