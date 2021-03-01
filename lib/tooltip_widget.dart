@@ -75,10 +75,10 @@ class _ToolTipWidgetState extends State<ToolTipWidget> {
   Offset position;
 
   bool isCloseToTopOrBottom(Offset position) {
-    double height = 150;
+    double height = 130;
     height = widget.contentHeight ?? height;
     print('${position.dy} ${widget.title ?? widget.description}');
-    return (widget.screenSize.height - (position.dy + (widget.contentHeight ?? 0))) <= height;
+    return (widget.screenSize.height - (position.dy - (widget.contentHeight ?? 0))) <= height;
     // if(widget.screenSize.height - position.dy)
   }
 
