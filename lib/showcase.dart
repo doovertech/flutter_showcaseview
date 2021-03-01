@@ -29,6 +29,7 @@ class Showcase extends StatefulWidget {
   final VoidCallback onTargetClick;
   final bool disposeOnTap;
   final bool disableAnimation;
+  final where where;
 
   const Showcase({
     @required this.key,
@@ -49,6 +50,7 @@ class Showcase extends StatefulWidget {
     this.disableAnimation = false,
     this.contentPadding = const EdgeInsets.symmetric(vertical: 8),
     this.onToolTipClick,
+    this.where,
   })  : height = null,
         width = null,
         container = null,
@@ -97,7 +99,7 @@ class Showcase extends StatefulWidget {
       this.disposeOnTap,
       this.animationDuration = const Duration(milliseconds: 2000),
       this.disableAnimation = false,
-      this.contentPadding = const EdgeInsets.symmetric(vertical: 8)})
+      this.contentPadding = const EdgeInsets.symmetric(vertical: 8), this.where})
       : this.showArrow = false,
         this.onToolTipClick = null,
         assert(overlayOpacity >= 0.0 && overlayOpacity <= 1.0,
@@ -277,6 +279,7 @@ class _ShowcaseState extends State<Showcase> with TickerProviderStateMixin {
               contentWidth: widget.width,
               onTooltipTap: _getOnTooltipTap,
               contentPadding: widget.contentPadding,
+              where: widget.where,
             ),
           ],
         ),
