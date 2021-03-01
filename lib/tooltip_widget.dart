@@ -78,7 +78,7 @@ class _ToolTipWidgetState extends State<ToolTipWidget> {
     double height = 130;
     height = widget.contentHeight ?? height;
     print('${position.dy} ${widget.title ?? widget.description}');
-    return (widget.screenSize.height - (position.dy - (widget.contentHeight ?? 0))) <= height;
+    return (widget.screenSize.height - (position.dy - (widget.contentHeight ?? 0) + 16)) <= height;
     // if(widget.screenSize.height - position.dy)
   }
 
